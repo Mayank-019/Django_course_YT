@@ -1,17 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django Tutorial</title>
-</head>
-<body>
-    <h1>This template is running by Django Server.</h1>
-    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum est fuga praesentium eaque labore doloribus totam at! Perferendis, placeat asperiores? Labore qui rem excepturi commodi? Et praesentium similique possimus impedit?</h2>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid maiores ex similique esse fuga quia doloribus dicta? Incidunt facere, repellendus inventore temporibus voluptatum cum, aspernatur maxime dolorem autem tempore eveniet.
-</body>
+{% extends "base.html" %}       <!-- inheritence jisse hora h  -->
+{% block start %}
 
-<script>
-    console.log("Hey Django")
-</script>
-</html>
+    <!-- <h1>This Template is running by Django Server.</h1> -->
+    <!-- {{peoples}} -->
+
+    <h1>This is Index Page</h1>
+
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+
+    <table class="container">
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+            <td {% if people.age < 18 %} style="background: red;" {% endif %}>
+                {% if people.age >= 18 %}
+                    👍
+                {% else %}
+                    👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- <p>
+        {{text|truncatechars:80}}
+    </p> -->
+
+    <!-- <p>
+        {% if "cucumber" in vegetables %}
+            Yes Available
+        {% elif "Tomato" in vegetables %}
+            Yes Available
+        {% else %}
+            Not Available
+        {% endif %}
+    </p> -->
+
+    {% endblock %}
