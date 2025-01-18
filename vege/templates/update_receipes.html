@@ -1,0 +1,25 @@
+{% extends "base.html" %}       <!-- inheritence jisse hora h  -->
+{% block start %}
+    
+    <div class="container mt-5">
+        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <h2>Update Receipe</h2>
+                <hr>
+                <label class="form-label">Receipe Name</label>
+                <input name="receipe_name" value="{{receipe.receipe_name}}" required type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Receipe Description</label>
+                <textarea class="form-control" required name="receipe_description">{{receipe.receipe_description}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Receipe Image</label>
+                <input name="receipe_image" type="file" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Update Receipe</button>
+        </form>
+    </div>
+
+{% endblock %}
